@@ -45,8 +45,11 @@ public class AccountsService {
       throw new IllegalArgumentException("Account " + accountToId + " does not exist.");
     }
     //To ensure thread safety when multiple threads access and modify the same accounts concurrently.
-    synchronized (accountFrom) {
-      synchronized (accountTo) {
+   Account firstLock = accountFromId.compareTo(accountToId) < 0 ? accountFrom : accountTo;
+   Account secondLock = accountFromId.compareTo(accountToId) < 0 ? accountTo : accountFrom;
+
+    synchronized (firstLock) {
+        synchronized (secondLock) {
         if (accountFrom.getBalance().compareTo(amount) < 0) {
           throw new IllegalArgumentException("Insufficient balance in account " + accountFromId);
         }
