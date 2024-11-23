@@ -2,7 +2,7 @@
 
 This project is a simple bank account management system built using Java and Spring Boot. It allows users to create accounts, retrieve account details, and transfer money between accounts with proper concurrency control and exception handling.
 
-##Features
+## Features
 
 - Create a new account
 - Retrieve account details
